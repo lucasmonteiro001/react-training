@@ -8,7 +8,6 @@ import VideoList from './components/video_list';
 global.jQuery = require('jquery');
 require('bootstrap');
 
-import export
 
 const API_KEY = "AIzaSyA6sKxGO33AaP1o3bkoLuaXr-Tq3d42BgY";
 
