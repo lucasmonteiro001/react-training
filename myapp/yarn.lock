@@ -3471,13 +3471,7 @@ mkdirp@^0.5.0, mkdirp@^0.5.1, "mkdirp@>=0.5 0", mkdirp@~0.5.0, mkdirp@~0.5.1, mk
   dependencies:
     minimist "0.0.8"
 
-mocha-tap-reporter:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/mocha-tap-reporter/-/mocha-tap-reporter-0.1.3.tgz#126cbbd2f8206495e72b159914d397b8ea17a228"
-  dependencies:
-    mocha "*"
-
-mocha@*:
+mocha, mocha@*:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/mocha/-/mocha-3.2.0.tgz#7dc4f45e5088075171a68896814e6ae9eb7a85e3"
   dependencies:
@@ -3492,6 +3486,12 @@ mocha@*:
     lodash.create "3.1.1"
     mkdirp "0.5.1"
     supports-color "3.1.2"
+
+mocha-tap-reporter:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/mocha-tap-reporter/-/mocha-tap-reporter-0.1.3.tgz#126cbbd2f8206495e72b159914d397b8ea17a228"
+  dependencies:
+    mocha "*"
 
 ms@0.7.1:
   version "0.7.1"
