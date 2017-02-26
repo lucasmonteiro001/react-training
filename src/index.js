@@ -20,29 +20,28 @@ class Container extends Component {
             selectedVideo: null
         };
 
-        YTSearch({key: API_KEY, term: 'surfboards'}, videos => {
+        this.videoSearch('surfboards');
+    }
+
+    videoSearch = (term) => {
+
+        YTSearch({key: API_KEY, term: term}, videos => {
 
             this.setState({
                 videos,
                 selectedVideo: videos[0]
             });
         });
+    };
 
-        this.onChangeSearch = this.onChangeSearch.bind(this);
-
-    }
-
-    onChangeSearch(val) {
+    onChangeSearch = (term) => {
 
         this.setState({
-            search: val
+            search: term
         });
 
-        YTSearch({key: API_KEY, term: this.state.search}, videos => {
-
-            this.setState({videos});
-        });
-    }
+        this.videoSearch(term);
+    };
 
     render() {
 
@@ -51,7 +50,10 @@ class Container extends Component {
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
                         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"></script>
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-                <SearchBar value={this.state.search} onChange={this.onChangeSearch}/>
+                <SearchBar
+                    onSearchTermChange={term => this.videoSearch(term)}
+                    value={this.state.search}
+                    onChange={this.onChangeSearch}/>
                 <VideoDetail video={this.state.selectedVideo}/>
                 <VideoList
                     onVideoSelect={selectedVideo => this.setState({selectedVideo})}
