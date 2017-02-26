@@ -6,9 +6,7 @@ import YTSearch from 'youtube-api-search';
 import VideoList from './components/video_list';
 
 global.jQuery = require('jquery');
-require('bootstrap');
-
-
+// require('bootstrap');
 const API_KEY = "AIzaSyA6sKxGO33AaP1o3bkoLuaXr-Tq3d42BgY";
 
 class Container extends Component {
@@ -46,6 +44,8 @@ class Container extends Component {
 
         return (
             <div>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"></script>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
                 <SearchBar value={this.state.search} onChange={this.onChangeSearch}/>
                 <VideoList videos={this.state.videos}/>
             </div>

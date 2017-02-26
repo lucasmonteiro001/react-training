@@ -11,7 +11,7 @@ const VideoList = (props) => {
     return (
         <ul className="col-md-4 list-group">
 
-            {videos.map(video => <VideoListItem video={video}/>)}
+            {videos.map(video => <VideoListItem key={video.etag} video={video}/>)}
 
         </ul>
     );
