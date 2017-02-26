@@ -11,7 +11,9 @@ class SearchBar extends Component {
         let {value, onChange} = this.props;
 
         return (
-            <input value={value} onChange={(e) => onChange(e.target.value)}/>
+            <div className="search-bar">
+                <input value={value} onChange={(e) => onChange(e.target.value)}/>
+            </div>
         );
     }
 }
