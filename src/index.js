@@ -5,6 +5,8 @@ import SearchBar from './components/search_bar';
 import YTSearch from 'youtube-api-search';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
+import _ from 'lodash';
+
 global.jQuery = require('jquery');
 // require('bootstrap');
 const API_KEY = "AIzaSyA6sKxGO33AaP1o3bkoLuaXr-Tq3d42BgY";
@@ -45,13 +47,17 @@ class Container extends Component {
 
     render() {
 
+        const videoSearch = _.debounce((term) => {
+            this.videoSearch(term)
+        }, 300);
+
         return (
             <div>
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
                         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"></script>
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
                 <SearchBar
-                    onSearchTermChange={term => this.videoSearch(term)}
+                    onSearchTermChange={videoSearch}
                     value={this.state.search}
                     onChange={this.onChangeSearch}/>
                 <VideoDetail video={this.state.selectedVideo}/>
