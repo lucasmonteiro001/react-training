@@ -4,7 +4,7 @@ import './index.css';
 import SearchBar from './components/search_bar';
 import YTSearch from 'youtube-api-search';
 import VideoList from './components/video_list';
-
+import VideoDetail from './components/video_detail';
 global.jQuery = require('jquery');
 // require('bootstrap');
 const API_KEY = "AIzaSyA6sKxGO33AaP1o3bkoLuaXr-Tq3d42BgY";
@@ -16,14 +16,18 @@ class Container extends Component {
 
         this.state = {
             search: '',
-            videos: []
+            videos: [],
+            selectedVideo: null
         };
 
         YTSearch({key: API_KEY, term: 'surfboards'}, videos => {
 
-            this.setState({ videos });
+            this.setState({
+                videos,
+                selectedVideo: videos[0]
+            });
         });
-        
+
         this.onChangeSearch = this.onChangeSearch.bind(this);
 
     }
@@ -36,7 +40,7 @@ class Container extends Component {
 
         YTSearch({key: API_KEY, term: this.state.search}, videos => {
 
-            this.setState({ videos });
+            this.setState({videos});
         });
     }
 
@@ -44,10 +48,14 @@ class Container extends Component {
 
         return (
             <div>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"></script>
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
                 <SearchBar value={this.state.search} onChange={this.onChangeSearch}/>
-                <VideoList videos={this.state.videos}/>
+                <VideoDetail video={this.state.selectedVideo}/>
+                <VideoList
+                    onVideoSelect={selectedVideo => this.setState({selectedVideo})}
+                    videos={this.state.videos}/>
             </div>
 
         )
@@ -57,6 +65,6 @@ class Container extends Component {
 }
 
 ReactDOM.render(
-  <Container/>,
-  document.getElementById('root')
+    <Container/>,
+    document.getElementById('root')
 );
